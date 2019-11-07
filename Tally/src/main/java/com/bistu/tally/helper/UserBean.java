@@ -18,6 +18,12 @@ public class UserBean {
 	private String username;
 	private String password;
 
+	/**
+	 * entity转bean
+	 * 
+	 * @param entity
+	 * @return
+	 */
 	public static UserBean of(User entity) {
 		log.info("entity is {}", entity);
 		UserBean bean = new UserBean();
@@ -28,6 +34,12 @@ public class UserBean {
 		return bean;
 	}
 
+	/**
+	 * bean转entity
+	 * 
+	 * @param bean
+	 * @return
+	 */
 	public static User of(UserBean bean) {
 		log.info("bean is {}", bean);
 		User user = new User();

@@ -20,11 +20,11 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long id;				//Id 自增
 	@Column(name = "user_name", nullable = false)
-	private String userName;
+	private String userName;		//用户名
 
 	@Column(name = "user_password", nullable = false)
-	private String userPassword;
+	private String userPassword;	//密码
 
 }
