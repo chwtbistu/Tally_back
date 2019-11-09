@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bistu.tally.bean.ResultInfo;
@@ -50,12 +51,13 @@ public class UserController {
 	 * @param password
 	 * @return
 	 */
-	@GetMapping({ "/register/{username}&{password}" })
+	@PostMapping({ "/register/{username}&{password}" })
 	public ResultInfo register(@PathVariable("username") String username, @PathVariable("password") String password) {
 		log.info("get requesting...");
 		if (userService.findByUserName(username).size() == 0) {
 			if (userService.addUser(username, password)) {
 				ResultInfo resultInfo = ResultInfo.success();
+				resultInfo.setData(userService.findByUserName(username));
 				return resultInfo;
 			} else {
 				log.info("db can not add this username");
