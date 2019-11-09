@@ -42,7 +42,7 @@ public class UserService {
 		userRepository.save(user);
 		return true;
 	}
-
+	
 	/**
 	 * 通过用户名和密码，查询t_user中是否存在该用户
 	 * 
