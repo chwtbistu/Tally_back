@@ -13,7 +13,11 @@ import com.bistu.tally.dao.entity.Social;
 import com.bistu.tally.dao.repository.custom.SocialCustomRepository;
 
 public interface SocialRepository extends JpaRepository<Social, Long>, SocialCustomRepository{
-	
+	/**
+	 * 通过用户编号查找所有记录
+	 * @param id 用户编号
+	 * @return List
+	 */
 	public List<Social> findSocialByUserId(Long id);
 
 }

@@ -16,8 +16,13 @@ public class SocialCustomRepositoryImpl implements SocialCustomRepository{
 
 	@Autowired
     private EntityManager entityManager;
-	
+	/**
+	 * 通过定位信息查找记录
+	 * @param location 定位信息
+	 * @return List
+	 */
 	public List<Social> findByDistance(Location location) {
+		//sql语句 查找和所给的定位信息距离在1000米内的所有记录，按时间排序
 		String jpql = "SELECT entity from Social entity where " + 
 				"round(6378.138*2*asin(sqrt(pow(sin( ("+ location.getLatitude() + 
 				"*pi()/180-entity.latitude*pi()/180)/2),2)+cos(" + location.getLatitude()
