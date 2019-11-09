@@ -55,10 +55,12 @@ public class BillController {
 	 * @param amount
 	 * @return
 	 */
-	@PostMapping({ "/bill/update/{id}&{amount}" })
-	public ResultInfo updateBill(@PathVariable("id") Long id, @PathVariable("amount") float amount) {
+	@PostMapping({ "/bill/update/{id}&{category}&{classify}&{amount}&{remarks}" })
+	public ResultInfo updateBill(@PathVariable("id") Long id, @PathVariable("category") int category,
+			@PathVariable("classify") String classify, @PathVariable("remarks") String remarks,
+			@PathVariable("amount") float amount) {
 		log.info("get requesting...");
-		if (billService.updateBill(amount, id)) {
+		if (billService.updateBill(category, classify, amount, remarks, id)) {
 			ResultInfo resultInfo = ResultInfo.success();
 			resultInfo.setData(billService.findByBillId(id));
 			return resultInfo;

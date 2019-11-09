@@ -18,8 +18,8 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 	 * @return
 	 */
 	@Modifying
-	@Query("update Bill bill set bill.amount=?1 where bill.id=?2")
-	public int updateBill(float amount, Long id);
+	@Query("update Bill bill set bill.category=?1,bill.classify=?2,bill.amount=?3,bill.remarks=?4 where bill.id=?5")
+	public int updateBill(int category, String classify, float amount, String remakrs, Long id);
 
 	/**
 	 * 通过账单id，进入t_bill表删除账单
@@ -32,5 +32,6 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 	public int deleteBill(Long id);
 
 	ArrayList<Bill> findByUserId(Long userid);
+
 	Optional<Bill> findById(Long id);
 }
