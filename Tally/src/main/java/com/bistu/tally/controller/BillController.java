@@ -18,6 +18,16 @@ public class BillController {
 	@Autowired
 	private BillService billService;
 
+	/**
+	 * 增加账单
+	 * 
+	 * @param userid
+	 * @param category
+	 * @param classify
+	 * @param amount
+	 * @param remarks
+	 * @return
+	 */
 	@GetMapping({ "/bill/add/{userid}&{category}&{classify}&{amount}&{remarks}" })
 	public ResultInfo addBill(@PathVariable("userid") Long userid, @PathVariable("category") int category,
 			@PathVariable("classify") String classify, @PathVariable("amount") float amount,
@@ -32,6 +42,13 @@ public class BillController {
 		}
 	}
 
+	/**
+	 * 修改账单
+	 * 
+	 * @param id
+	 * @param amount
+	 * @return
+	 */
 	@GetMapping({ "/bill/update/{id}&{amount}" })
 	public ResultInfo updateBill(@PathVariable("id") Long id, @PathVariable("amount") float amount) {
 		log.info("get requesting...");
