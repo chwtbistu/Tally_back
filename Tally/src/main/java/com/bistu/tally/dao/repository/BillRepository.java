@@ -17,4 +17,14 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 	@Modifying
 	@Query("update Bill bill set bill.amount=?1 where bill.id=?2")
 	public int updateBill(float amount, Long id);
+
+	/**
+	 * 通过账单id，进入t_bill表删除账单
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@Modifying
+	@Query(nativeQuery = true, value = "delete from t_bill where id=?1")
+	public int deleteBill(Long id);
 }

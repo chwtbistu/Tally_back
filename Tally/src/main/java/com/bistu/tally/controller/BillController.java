@@ -61,4 +61,21 @@ public class BillController {
 		}
 	}
 
+	/**
+	 * 通过账单id删除账单
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@GetMapping({ "/bill/delete/{id}" })
+	public ResultInfo deleteBill(@PathVariable("id") Long id) {
+		if (billService.deleteBill(id)) {
+			ResultInfo resultInfo = ResultInfo.success();
+			return resultInfo;
+		} else {
+			ResultInfo resultInfo = ResultInfo.failure();
+			return resultInfo;
+		}
+	}
+
 }

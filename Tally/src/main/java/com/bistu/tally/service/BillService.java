@@ -55,4 +55,19 @@ public class BillService {
 			return false;
 		}
 	}
+
+	/**
+	 * 通过账单id删除账单
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@Transactional
+	public boolean deleteBill(Long id) {
+		if (billRepository.deleteBill(id) == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
