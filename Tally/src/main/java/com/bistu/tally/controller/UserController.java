@@ -62,11 +62,13 @@ public class UserController {
 			} else {
 				log.info("db can not add this username");
 				ResultInfo resultInfo = ResultInfo.failure();
+				resultInfo.setMesg("系统无法添加该用户！");
 				return resultInfo;
 			}
 		} else {
 			log.info("db has this username already");
 			ResultInfo resultInfo = ResultInfo.failure();
+			resultInfo.setMesg("该用户已经被注册过！");
 			return resultInfo;
 		}
 	}
