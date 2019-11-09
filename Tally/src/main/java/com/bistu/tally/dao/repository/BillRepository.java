@@ -32,4 +32,5 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 	public int deleteBill(Long id);
 
 	ArrayList<Bill> findByUserId(Long userid);
+	Optional<Bill> findById(Long id);
 }

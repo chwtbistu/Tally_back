@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,7 +28,7 @@ public class BillService {
 	 * @param remarks  备注，可以为空
 	 * @return
 	 */
-	public @ResponseBody boolean addBill(Long userid, Date date, int category, String classify, float amount,
+	public @ResponseBody Bill addBill(Long userid, Date date, int category, String classify, float amount,
 			String remarks) {
 		Bill bill = new Bill();
 		bill.setUserId(userid);
@@ -36,8 +37,8 @@ public class BillService {
 		bill.setClassify(classify);
 		bill.setAmount(amount);
 		bill.setRemarks(remarks);
-		billRepository.save(bill);
-		return true;
+		bill = billRepository.save(bill);
+		return bill;
 	}
 
 	/**
@@ -69,5 +70,9 @@ public class BillService {
 		} else {
 			return false;
 		}
+	}
+
+	public Bill findByBillId(Long id) {
+		return billRepository.findById(id).get();
 	}
 }
