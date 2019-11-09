@@ -23,7 +23,7 @@ public class BillService {
 	 * @param userid   用户id
 	 * @param date     本地时间
 	 * @param category 收支类型，1为支出，2为收入
-	 * @param classify 类别
+	 * @param classify 类别名称
 	 * @param amount   金额
 	 * @param remarks  备注，可以为空
 	 * @return
