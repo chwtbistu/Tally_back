@@ -18,12 +18,14 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 	@Autowired
 	private UserService userService;
-/**
- * Url接受参数，通过userService检查数据库，登入功能
- * @param username 用户名
- * @param password 密码
- * @return 登入成功返回code 1 失败返回 -1
- */
+
+	/**
+	 * Url接受参数，通过userService检查数据库，登入功能
+	 * 
+	 * @param username 用户名
+	 * @param password 密码
+	 * @return 登入成功返回code 1 失败返回 -1
+	 */
 	@GetMapping({ "/login/{username}&{password}" })
 	public ResultInfo login(@PathVariable("username") String username, @PathVariable("password") String password) {
 		log.info("get requesting...");
@@ -40,17 +42,19 @@ public class UserController {
 			return resultInfo;
 		}
 	}
-/**
- * Url接受参数，通过userService检查数据库，已经存在的用户名不得再次注册，注册功能
- * @param username
- * @param password
- * @return
- */
+
+	/**
+	 * Url接受参数，通过userService检查数据库，已经存在的用户名不得再次注册，注册功能
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	@GetMapping({ "/register/{username}&{password}" })
 	public ResultInfo register(@PathVariable("username") String username, @PathVariable("password") String password) {
 		log.info("get requesting...");
 		if (userService.findByUserName(username).size() == 0) {
-			if (userService.addUserFromUserNameAndPassword(username, password)) {
+			if (userService.addUser(username, password)) {
 				ResultInfo resultInfo = ResultInfo.success();
 				return resultInfo;
 			} else {

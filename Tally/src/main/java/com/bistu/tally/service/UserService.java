@@ -35,7 +35,7 @@ public class UserService {
 	 * @param password 密码
 	 * @return 增加成功 true
 	 */
-	public @ResponseBody boolean addUserFromUserNameAndPassword(String username, String password) {
+	public @ResponseBody boolean addUser(String username, String password) {
 		User user = new User();
 		user.setUserName(username);
 		user.setUserPassword(password);
