@@ -30,7 +30,7 @@ public class UserController {
 	@GetMapping({ "/login/{username}&{password}" })
 	public ResultInfo login(@PathVariable("username") String username, @PathVariable("password") String password) {
 		log.info("get requesting...");
-		ArrayList<User> users = new ArrayList<>();
+		ArrayList<User> users = new ArrayList<User>();
 		users = userService.findByUserNameAndPassword(username, password);
 		if (users.size() != 0) {
 			ResultInfo resultInfo = ResultInfo.success();

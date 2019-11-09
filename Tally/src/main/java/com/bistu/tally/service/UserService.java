@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bistu.tally.dao.entity.User;
 import com.bistu.tally.dao.repository.UserRepository;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service
 public class UserService {
 	@Autowired
@@ -23,7 +21,7 @@ public class UserService {
 	 * @return
 	 */
 	public ArrayList<User> findByUserName(String username) {
-		ArrayList<User> users = new ArrayList<>();
+		ArrayList<User> users = new ArrayList<User>();
 		users = userRepository.findByUserName(username);
 		return users;
 	}
@@ -51,7 +49,7 @@ public class UserService {
 	 * @return 该用户的ArrayList
 	 */
 	public ArrayList<User> findByUserNameAndPassword(String username, String password) {
-		ArrayList<User> users = new ArrayList<>();
+		ArrayList<User> users = new ArrayList<User>();
 		users = userRepository.findByUserNameAndUserPassword(username, password);
 		return users;
 	}
