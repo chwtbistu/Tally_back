@@ -1,5 +1,8 @@
 package com.bistu.tally.dao.repository;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -27,4 +30,6 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 	@Modifying
 	@Query(nativeQuery = true, value = "delete from t_bill where id=?1")
 	public int deleteBill(Long id);
+
+	ArrayList<Bill> findByUserId(Long userid);
 }
