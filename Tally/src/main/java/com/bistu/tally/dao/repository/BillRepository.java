@@ -33,5 +33,6 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 
 	ArrayList<Bill> findByUserId(Long userid);
 
-	Optional<Bill> findById(Long id);
+	@Query("select b from Bill b where b.id=?1")
+	ArrayList<Bill> findByBillId(Long id);
 }

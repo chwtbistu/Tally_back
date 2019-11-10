@@ -73,6 +73,6 @@ public class BillService {
 	}
 
 	public Bill findByBillId(Long id) {
-		return billRepository.findById(id).get();
+		return billRepository.findByBillId(id).get(0);
 	}
 }
