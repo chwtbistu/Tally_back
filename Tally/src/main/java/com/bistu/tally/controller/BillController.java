@@ -1,5 +1,6 @@
 package com.bistu.tally.controller;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bistu.tally.bean.ResultInfo;
 import com.bistu.tally.dao.entity.Bill;
 import com.bistu.tally.service.BillService;
+import com.bistu.tally.util.DateFactory;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -20,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 public class BillController {
 	@Autowired
 	private BillService billService;
+
+	private DateFactory dateFactory = new DateFactory();
 
 	/**
 	 * 增加账单
@@ -31,11 +36,12 @@ public class BillController {
 	 * @param remarks
 	 * @return
 	 */
-	@PostMapping({ "/bill/add/{userid}&{category}&{classify}&{amount}&{remarks}" })
+	@PostMapping(value = "/bill/add/{userid}&{category}&{classify}&{amount}&{remarks}", produces = "application/json;charset=utf-8")
 	public ResultInfo addBill(@PathVariable("userid") Long userid, @PathVariable("category") int category,
 			@PathVariable("classify") String classify, @PathVariable("amount") float amount,
 			@PathVariable("remarks") String remarks) {
 		log.info("get requesting...");
+		log.info(classify);
 		Bill bill = new Bill();
 		bill = billService.addBill(userid, new Date(), category, classify, amount, remarks);
 		if (bill != null) {
@@ -54,13 +60,15 @@ public class BillController {
 	 * @param id
 	 * @param amount
 	 * @return
+	 * @throws ParseException
 	 */
-	@PostMapping({ "/bill/update/{id}&{category}&{classify}&{amount}&{remarks}" })
-	public ResultInfo updateBill(@PathVariable("id") Long id, @PathVariable("category") int category,
-			@PathVariable("classify") String classify, @PathVariable("remarks") String remarks,
-			@PathVariable("amount") float amount) {
+	@PostMapping({ "/bill/update/{id}&{date}&{category}&{classify}&{amount}&{remarks}" })
+	public ResultInfo updateBill(@PathVariable("id") Long id, @PathVariable("date") String dateString,
+			@PathVariable("category") int category, @PathVariable("classify") String classify,
+			@PathVariable("remarks") String remarks, @PathVariable("amount") float amount) throws ParseException {
 		log.info("get requesting...");
-		if (billService.updateBill(category, classify, amount, remarks, id)) {
+		log.info(dateString);
+		if (billService.updateBill(category, classify, amount, remarks, dateString, id)) {
 			ResultInfo resultInfo = ResultInfo.success();
 			resultInfo.setData(billService.findByBillId(id));
 			return resultInfo;

@@ -49,8 +49,9 @@ public class BillService {
 	 * @return
 	 */
 	@Transactional
-	public boolean updateBill(int category, String classify, float amount, String remakrs, Long id) {
-		if (billRepository.updateBill(category, classify, amount, remakrs, id) == 1) {
+	public boolean updateBill(int category, String classify, float amount, String remakrs, String date, Long id) {
+		if (billRepository.updateBill(category, classify, amount, remakrs, id) == 1
+				&& billRepository.updateBillFromTime(date, id) == 1) {
 			return true;
 		} else {
 			return false;

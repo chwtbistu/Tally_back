@@ -1,6 +1,7 @@
 package com.bistu.tally.dao.repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,6 +22,10 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 	@Query("update Bill bill set bill.category=?1,bill.classify=?2,bill.amount=?3,bill.remarks=?4 where bill.id=?5")
 	public int updateBill(int category, String classify, float amount, String remakrs, Long id);
 
+	@Modifying
+	@Query(nativeQuery = true, value = "UPDATE t_bill SET time = ?1 WHERE id=?2")
+	public int updateBillFromTime(String time, Long id);
+
 	/**
 	 * 通过账单id，进入t_bill表删除账单
 	 * 
@@ -32,6 +37,7 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 	public int deleteBill(Long id);
 
 	ArrayList<Bill> findByUserId(Long userid);
+
 	@Query("select b from Bill b where b.id=?1")
 	ArrayList<Bill> findByBillId(Long id);
 }
