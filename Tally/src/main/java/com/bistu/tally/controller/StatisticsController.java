@@ -23,7 +23,7 @@ public class StatisticsController {
 	public ResultInfo getAllBillFromUserId(@PathVariable("userid") Long userid) {
 		log.info("get requesing...");
 		ResultInfo resultInfo = ResultInfo.success();
-		ArrayList<Bill> bills = new ArrayList<>();
+		ArrayList<Bill> bills = new ArrayList<Bill>();
 		bills = statisticsService.findByUserId(userid);
 		resultInfo.setData(bills);
 		return resultInfo;

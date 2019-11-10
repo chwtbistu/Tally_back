@@ -30,5 +30,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	@Modifying
 	@Query("update User user set user.userPassword=?1 where userName=?2")
 	public int updatePassword(String password,String username);
+	
+
+	@Query(value="select user_name from t_user where id = ?1", nativeQuery = true)
+	public String findCase(Long id);
 
 }

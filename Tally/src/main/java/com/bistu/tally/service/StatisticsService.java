@@ -14,7 +14,7 @@ public class StatisticsService {
 	private BillRepository billRepository;
 
 	public ArrayList<Bill> findByUserId(Long userid) {
-		ArrayList<Bill> bills = new ArrayList<>();
+		ArrayList<Bill> bills = new ArrayList<Bill>();
 		bills = billRepository.findByUserId(userid);
 		return bills;
 	}
