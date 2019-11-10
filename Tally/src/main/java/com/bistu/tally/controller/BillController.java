@@ -87,4 +87,19 @@ public class BillController {
 		}
 	}
 
+	@GetMapping({ "/bill/get/{id}" })
+	public ResultInfo getBillFromId(@PathVariable("id") Long id) {
+		log.info("get requesting...");
+		Bill bill = new Bill();
+		bill = billService.findByBillId(id);
+		if (bill != null) {
+			ResultInfo resultInfo = ResultInfo.success();
+			resultInfo.setData(bill);
+			return resultInfo;
+		} else {
+			ResultInfo resultInfo = ResultInfo.failure();
+			return resultInfo;
+		}
+	}
+
 }

@@ -3,8 +3,11 @@ package com.bistu.tally.dao.repository;
 import java.util.ArrayList;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 import com.bistu.tally.dao.entity.User;
+
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	/**
@@ -23,5 +26,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 * @return
 	 */
 	ArrayList<User> findByUserName(String userName);
+	
+	@Modifying
+	@Query("update User user set user.userPassword=?1 where userName=?2")
+	public int updatePassword(String password,String username);
 
 }
