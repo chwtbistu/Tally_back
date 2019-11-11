@@ -111,4 +111,11 @@ public class BillController {
 		}
 	}
 
+	@GetMapping({ "/bill/get/user/{userid}" })
+	public ResultInfo getBillFromUserId(@PathVariable("userid") Long userid) {
+		ResultInfo resultInfo = ResultInfo.success();
+		resultInfo.setData(billService.findByUserId(userid));
+		return resultInfo;
+	}
+
 }

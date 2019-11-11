@@ -1,5 +1,6 @@
 package com.bistu.tally.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.transaction.Transactional;
@@ -71,6 +72,10 @@ public class BillService {
 		} else {
 			return false;
 		}
+	}
+
+	public ArrayList<Bill> findByUserId(Long userId) {
+		return billRepository.findByUserId(userId);
 	}
 
 	public Bill findByBillId(Long id) {

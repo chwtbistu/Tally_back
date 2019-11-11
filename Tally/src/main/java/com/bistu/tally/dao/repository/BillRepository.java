@@ -40,4 +40,5 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 
 	@Query("select b from Bill b where b.id=?1")
 	ArrayList<Bill> findByBillId(Long id);
+	
 }
