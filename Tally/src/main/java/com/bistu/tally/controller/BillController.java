@@ -95,6 +95,12 @@ public class BillController {
 		}
 	}
 
+	/**
+	 * 得到指定账单id的账单
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping({ "/bill/get/{id}" })
 	public ResultInfo getBillFromId(@PathVariable("id") Long id) {
 		log.info("get requesting...");
@@ -111,8 +117,15 @@ public class BillController {
 		}
 	}
 
+	/**
+	 * 通过用户id，得到该用户所有账单
+	 * 
+	 * @param userid
+	 * @return
+	 */
 	@GetMapping({ "/bill/get/user/{userid}" })
 	public ResultInfo getBillFromUserId(@PathVariable("userid") Long userid) {
+		log.info("get requsting...");
 		ResultInfo resultInfo = ResultInfo.success();
 		resultInfo.setData(billService.findByUserId(userid));
 		return resultInfo;

@@ -19,4 +19,12 @@ public class StatisticsService {
 		return bills;
 	}
 
+	public ArrayList<Bill> findByUserIdAndCategory(Long userid, int category) {
+		return billRepository.findByUserIdAndCategory(userid, category);
+	}
+
+	public ArrayList<Bill> findByUserIdAndCategoryAndMonth(Long userid, int category, int month) {
+		return billRepository.findByUserIdAndCategoryAndMonth(userid, category, month);
+	}
+
 }
