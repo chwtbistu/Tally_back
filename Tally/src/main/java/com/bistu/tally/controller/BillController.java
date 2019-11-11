@@ -103,6 +103,7 @@ public class BillController {
 		if (bill != null) {
 			ResultInfo resultInfo = ResultInfo.success();
 			resultInfo.setData(bill);
+			log.info(bill.getTime().toString());
 			return resultInfo;
 		} else {
 			ResultInfo resultInfo = ResultInfo.failure();
