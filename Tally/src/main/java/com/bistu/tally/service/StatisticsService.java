@@ -27,4 +27,15 @@ public class StatisticsService {
 		return billRepository.findByUserIdAndCategoryAndMonth(userid, category, month);
 	}
 
+	public ArrayList<Bill> findByUserIdAndCategoryAndDay(Long userid, int category, int day) {
+		return billRepository.findByUserIdAndCategoryAndMonth(userid, category, day);
+	}
+
+	public ArrayList<Bill> findByUserIdAndCategoryAndYear(Long userid, int category, int year) {
+		return billRepository.findByUserIdAndCategoryAndMonth(userid, category, year);
+	}
+
+	public ArrayList<Bill> findByUserIdAndClassify(Long userid,String classify,int month,int category) {
+		return billRepository.findByUserIdAndClassifyAndMonthAndCategoty(userid,classify,month,category);
+	}
 }

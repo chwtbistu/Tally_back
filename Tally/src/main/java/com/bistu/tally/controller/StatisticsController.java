@@ -25,27 +25,63 @@ public class StatisticsController {
 	private StatisticsService statisticsService;
 
 	/**
-	 * 获得指定用户，指定的收支类型的，账单数据，当第三个参数month为0时，返回该用户所有该收支类型，否则返回指定月份的账单
-	 * 127.0.0.1:8080/bill/statistics/?userid=1&category=1&month=11
+	 * 获得指定用户，指定的收支类型的，账单数据，返回该用户所有该收支类型，否则返回指定月份/年份/日的账单
+	 * http://127.0.0.1:8080/bill/statistics/?userid=1&category=1&month=11&day=0&year=0
+	 * 
 	 * @param userid
 	 * @param category
 	 * @param month
+	 * @param day
+	 * @param year
 	 * @return
 	 */
-	@GetMapping("/bill/statistics/")
+	@GetMapping("/bill/caategory")
 	public ResultInfo getAllBillFromUserIdAndCategoryAndMonth(@RequestParam("userid") Long userid,
-			@RequestParam("category") int category, @RequestParam("month") String month) {
+			@RequestParam("category") int category, @RequestParam("month") String month,
+			@RequestParam("day") String day, @RequestParam("year") String year) {
 		log.info("get requsting...");
 		ResultInfo resultInfo = ResultInfo.success();
 		if (Integer.parseInt(month) == 0) {
-			resultInfo.setData(statisticsService.findByUserIdAndCategory(userid, category));
-			return resultInfo;
+			if (Integer.parseInt(day) == 0) {
+				if (Integer.parseInt(year) == 0) {
+					// 都是零，让人怎么办嘛，返回所有的信息
+					resultInfo.setData(statisticsService.findByUserIdAndCategory(userid, category));
+					return resultInfo;
+				} else {
+					// TODO year
+					resultInfo.setData(
+							statisticsService.findByUserIdAndCategoryAndYear(userid, category, Integer.parseInt(year)));
+					return resultInfo;
+				}
+			} else {
+				// TODO day
+				resultInfo.setData(
+						statisticsService.findByUserIdAndCategoryAndDay(userid, category, Integer.parseInt(day)));
+				return resultInfo;
+			}
 		} else {
+			// TODO month
 			resultInfo.setData(
 					statisticsService.findByUserIdAndCategoryAndMonth(userid, category, Integer.parseInt(month)));
 			return resultInfo;
 		}
+	}
 
+	/**
+	 * 通过用户id以及类别，寻找指定类别的账单，可以指定月份
+	 * 
+	 * @param userid
+	 * @param classify
+	 * @return
+	 */
+	@GetMapping({ "/bill/classify" })
+	public ResultInfo getBillFromUserIdAndClassify(@RequestParam("userid") Long userid,
+			@RequestParam("classify") String classify, @RequestParam("month") String month,
+			@RequestParam("category") int category) {
+		ResultInfo resultInfo = ResultInfo.success();
+		resultInfo.setData(
+				statisticsService.findByUserIdAndClassify(userid, classify, Integer.parseInt(month), category));
+		return resultInfo;
 	}
 
 }
