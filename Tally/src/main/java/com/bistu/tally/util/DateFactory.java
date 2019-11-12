@@ -47,4 +47,20 @@ public class DateFactory {
 		return strtodate;
 	}
 
+	public int DateMonthToInt(Date date) {
+		String str = date.toString();
+		int k = 0;
+		int[] where = new int[2];
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) == '-') {
+				where[k] = i;
+				k++;
+			}
+		}
+		//String year = str.substring(0, where[0]);
+		String month = str.substring(where[0] + 1, where[1]);
+		//String day = str.substring(where[1] + 1, str.length());
+		return Integer.parseInt(month);
+	}
+
 }

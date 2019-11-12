@@ -7,11 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.bistu.tally.dao.entity.Bill;
 import com.bistu.tally.dao.repository.BillRepository;
+import com.bistu.tally.util.DateFactory;
 
 @Service
 public class StatisticsService {
 	@Autowired
 	private BillRepository billRepository;
+
+	private DateFactory dateFactory = new DateFactory();
 
 	public ArrayList<Bill> findByUserId(Long userid) {
 		ArrayList<Bill> bills = new ArrayList<Bill>();
@@ -60,7 +63,151 @@ public class StatisticsService {
 	 * @param category
 	 * @return
 	 */
-	public ArrayList<Bill> findByUserIdAndClassify(Long userid, String classify, int month, int category) {
+	public ArrayList<Bill> findByUserIdAndClassifyAndMonth(Long userid, String classify, int month, int category) {
 		return billRepository.findByUserIdAndClassifyAndMonthAndCategoty(userid, classify, month, category);
+	}
+
+	public ArrayList<Bill> findByUserIdAndClassifyAndYear(Long userid, String classify, int year, int category) {
+		return billRepository.findByUserIdAndClassifyAndMonthAndCategoty(userid, classify, year, category);
+	}
+
+	public ArrayList<Bill> findByUserIdAndClassifyAndDay(Long userid, String classify, int day, int category) {
+		return billRepository.findByUserIdAndClassifyAndMonthAndCategoty(userid, classify, day, category);
+	}
+
+	public float sumCategoryByYear(Long userid, int category, int year) {
+		float sum = 0;
+		ArrayList<Bill> bills = new ArrayList<>();
+		bills = billRepository.findCategoryFromYear(userid, category, year);
+		for (int i = 0; i < bills.size(); i++) {
+			sum += bills.get(i).getAmount();
+		}
+		return sum;
+	}
+
+	public float sumCategoryByMonth(Long userid, int category, int year, int month) {
+		float sum = 0;
+		ArrayList<Bill> bills = new ArrayList<>();
+		bills = billRepository.findCategoryFromMonth(userid, category, year, month);
+		for (int i = 0; i < bills.size(); i++) {
+			sum += bills.get(i).getAmount();
+		}
+		System.out.print(sum);
+		System.out.print("111111");
+		return sum;
+	}
+
+	public float sumCategoryByDay(Long userid, int category, int year, int month, int day) {
+		float sum = 0;
+		ArrayList<Bill> bills = new ArrayList<>();
+		bills = billRepository.findCategoryFromDay(userid, category, year, month, day);
+		for (int i = 0; i < bills.size(); i++) {
+			sum += bills.get(i).getAmount();
+		}
+		return sum;
+	}
+
+	public float[] findEachMonthFromUserIdAndYear(Long userid, int year, int category) {
+		ArrayList<Bill> bills = new ArrayList<>();
+		bills = this.billRepository.findCategoryFromYear(userid, category, year);
+		float[] eachMonth = new float[12];
+		for (int i = 0; i < eachMonth.length; i++) {
+			eachMonth[i] = 0;
+		}
+		for (int i = 0; i < bills.size(); i++) {
+			System.out.print(dateFactory.DateMonthToInt(bills.get(i).getTime()));
+			eachMonth[dateFactory.DateMonthToInt(bills.get(i).getTime())] += bills.get(i).getAmount();
+		}
+		return eachMonth;
+	}
+
+	public float[] findEachClassifyFromUserIdAndYear(Long userid, int year, int category) {
+		ArrayList<Bill> bills = this.billRepository.findCategoryFromYear(userid, category, year);
+		float[] eachClassiyf = new float[6];
+		for (int i = 0; i < bills.size(); i++) {
+			switch (bills.get(i).getClassify()) {
+			case "学习":
+				eachClassiyf[0] += bills.get(i).getAmount();
+				break;
+			case "运动":
+				eachClassiyf[1] += bills.get(i).getAmount();
+				break;
+			case "交通":
+				eachClassiyf[2] += bills.get(i).getAmount();
+				break;
+			case "衣服":
+				eachClassiyf[3] += bills.get(i).getAmount();
+				break;
+			case "工具":
+				eachClassiyf[4] += bills.get(i).getAmount();
+				break;
+			case "食物":
+				eachClassiyf[5] += bills.get(i).getAmount();
+				break;
+			default:
+				break;
+			}
+		}
+		return eachClassiyf;
+	}
+
+	public float[] findEachClassifyFromUserIdAndMonth(Long userid, int year, int month, int category) {
+		ArrayList<Bill> bills = this.billRepository.findCategoryFromMonth(userid, category, year, month);
+		float[] eachClassiyf = new float[6];
+		for (int i = 0; i < bills.size(); i++) {
+			switch (bills.get(i).getClassify()) {
+			case "学习":
+				eachClassiyf[0] += bills.get(i).getAmount();
+				break;
+			case "运动":
+				eachClassiyf[1] += bills.get(i).getAmount();
+				break;
+			case "交通":
+				eachClassiyf[2] += bills.get(i).getAmount();
+				break;
+			case "衣服":
+				eachClassiyf[3] += bills.get(i).getAmount();
+				break;
+			case "工具":
+				eachClassiyf[4] += bills.get(i).getAmount();
+				break;
+			case "食物":
+				eachClassiyf[5] += bills.get(i).getAmount();
+				break;
+			default:
+				break;
+			}
+		}
+		return eachClassiyf;
+	}
+
+	public float[] findEachClassifyFromUserIdAndDay(Long userid, int year, int month, int day, int category) {
+		ArrayList<Bill> bills = this.billRepository.findCategoryFromDay(userid, category, year, month, day);
+		float[] eachClassiyf = new float[6];
+		for (int i = 0; i < bills.size(); i++) {
+			switch (bills.get(i).getClassify()) {
+			case "学习":
+				eachClassiyf[0] += bills.get(i).getAmount();
+				break;
+			case "运动":
+				eachClassiyf[1] += bills.get(i).getAmount();
+				break;
+			case "交通":
+				eachClassiyf[2] += bills.get(i).getAmount();
+				break;
+			case "衣服":
+				eachClassiyf[3] += bills.get(i).getAmount();
+				break;
+			case "工具":
+				eachClassiyf[4] += bills.get(i).getAmount();
+				break;
+			case "食物":
+				eachClassiyf[5] += bills.get(i).getAmount();
+				break;
+			default:
+				break;
+			}
+		}
+		return eachClassiyf;
 	}
 }

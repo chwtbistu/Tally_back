@@ -15,8 +15,6 @@ import com.bistu.tally.bean.ResultInfo;
 import com.bistu.tally.dao.entity.Bill;
 import com.bistu.tally.service.BillService;
 import com.bistu.tally.util.DateFactory;
-import com.bistu.tally.util.SeriesBean;
-import com.bistu.tally.util.YagolRequest;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,7 +25,6 @@ public class BillController {
 	private BillService billService;
 
 	private DateFactory dateFactory = new DateFactory();
-	private YagolRequest yagolRequest=new YagolRequest();
 
 	/**
 	 * 增加账单

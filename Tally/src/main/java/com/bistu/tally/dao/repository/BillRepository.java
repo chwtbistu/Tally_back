@@ -52,6 +52,22 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 	@Query(nativeQuery = true, value = "select * from t_bill where user_id=?1 and bill_category=?2 and year(time)=?3")
 	ArrayList<Bill> findByUserIdAndCategoryAndYear(Long userid, int category, int year);
 
-	@Query(nativeQuery = true,value = "select * from t_bill where user_id=?1 and bill_classify=?2 and bill_category=?4 and month(time)=?3")
-	ArrayList<Bill> findByUserIdAndClassifyAndMonthAndCategoty(Long userid,String classiyf,int month,int category);
+	@Query(nativeQuery = true, value = "select * from t_bill where user_id=?1 and bill_classify=?2 and bill_category=?4 and month(time)=?3")
+	ArrayList<Bill> findByUserIdAndClassifyAndMonthAndCategoty(Long userid, String classiyf, int month, int category);
+
+	@Query(nativeQuery = true, value = "select * from t_bill where user_id=?1 and bill_classify=?2 and bill_category=?4 and year(time)=?3")
+	ArrayList<Bill> findByUserIdAndClassifyAndYearAndCategoty(Long userid, String classiyf, int month, int category);
+
+	@Query(nativeQuery = true, value = "select * from t_bill where user_id=?1 and bill_classify=?2 and bill_category=?4 and day(time)=?3")
+	ArrayList<Bill> findByUserIdAndClassifyAndDayAndCategoty(Long userid, String classiyf, int month, int category);
+
+	@Query(nativeQuery = true, value = "select * from t_bill where user_id=?1 and bill_category=?2 and year(time)=?3 and month(time)=?4 and day(time)=?5")
+	ArrayList<Bill> findCategoryFromDay(Long userid, int category, int year, int month, int day);
+
+	@Query(nativeQuery = true, value = "select * from t_bill where user_id=?1 and bill_category=?2 and year(time)=?3 and month(time)=?4 ")
+	ArrayList<Bill> findCategoryFromMonth(Long userid, int category, int year, int month);
+
+	@Query(nativeQuery = true, value = "select * from t_bill where user_id=?1 and bill_category=?2 and year(time)=?3")
+	ArrayList<Bill> findCategoryFromYear(Long userid, int category, int year);
+
 }
