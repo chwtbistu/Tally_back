@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bistu.tally.bean.ResultInfo;
 import com.bistu.tally.dao.entity.Bill;
+import com.bistu.tally.helper.SeriesBean_1;
+import com.bistu.tally.helper.SeriesBean_2;
+import com.bistu.tally.helper.YagolRequest_1;
+import com.bistu.tally.helper.YagolRequest_2;
 import com.bistu.tally.service.StatisticsService;
-import com.bistu.tally.util.SeriesBean_1;
-import com.bistu.tally.util.SeriesBean_2;
-import com.bistu.tally.util.YagolRequest_1;
-import com.bistu.tally.util.YagolRequest_2;
 import com.sun.net.httpserver.HttpServer;
 
 import lombok.extern.slf4j.Slf4j;
@@ -56,7 +56,7 @@ public class StatisticsController {
 			if (Integer.parseInt(month) != 0) {
 				if (Integer.parseInt(day) != 0) {
 					// TODO 返回这一天的
-					ArrayList<SeriesBean_1> seriesBeans = new ArrayList<>();
+					ArrayList<SeriesBean_1> seriesBeans = new ArrayList<SeriesBean_1>();
 					seriesBeans.add(new SeriesBean_1("支出", this.statisticsService.sumCategoryByDay(userid, 1,
 							Integer.parseInt(year), monthInt, dayInt)));
 					seriesBeans.add(new SeriesBean_1("收入", this.statisticsService.sumCategoryByDay(userid, 2,
@@ -67,7 +67,7 @@ public class StatisticsController {
 					return resultInfo;
 				} else {
 					// TODO 这个年，月的
-					ArrayList<SeriesBean_1> seriesBeans = new ArrayList<>();
+					ArrayList<SeriesBean_1> seriesBeans = new ArrayList<SeriesBean_1>();
 					log.info("start");
 					seriesBeans.add(new SeriesBean_1("支出",
 							this.statisticsService.sumCategoryByMonth(userid, 1, Integer.parseInt(year), monthInt)));
@@ -80,7 +80,7 @@ public class StatisticsController {
 				}
 			} else {
 				// TODO 这一年的
-				ArrayList<SeriesBean_1> seriesBeans = new ArrayList<>();
+				ArrayList<SeriesBean_1> seriesBeans = new ArrayList<SeriesBean_1>();
 				seriesBeans.add(new SeriesBean_1("支出", this.statisticsService.sumCategoryByYear(userid, 1, yearInt)));
 
 				seriesBeans.add(new SeriesBean_1("收入", this.statisticsService.sumCategoryByYear(userid, 2, yearInt)));
@@ -101,7 +101,7 @@ public class StatisticsController {
 			@RequestParam("year") String year) {
 		ResultInfo resultInfo = ResultInfo.success();
 		yagolRequest_2.setCategoriesToMonth();// 一年的十二个月初始化
-		ArrayList<SeriesBean_2> seriesBean_2s = new ArrayList<>();
+		ArrayList<SeriesBean_2> seriesBean_2s = new ArrayList<SeriesBean_2>();
 		seriesBean_2s.add(new SeriesBean_2("支出",
 				statisticsService.findEachMonthFromUserIdAndYear(userid, Integer.parseInt(year), 1)));
 		seriesBean_2s.add(new SeriesBean_2("收入",
@@ -123,7 +123,7 @@ public class StatisticsController {
 			@RequestParam("month") String month, @RequestParam("day") String day, @RequestParam("year") String year) {
 		ResultInfo resultInfo = ResultInfo.success();
 		yagolRequest_2.setCategoriesToClassify();
-		ArrayList<SeriesBean_2> seriesBean_2s = new ArrayList<>();
+		ArrayList<SeriesBean_2> seriesBean_2s = new ArrayList<SeriesBean_2>();
 		int yearInt = Integer.parseInt(year);
 		int monthInt = Integer.parseInt(month);
 		int dayInt = Integer.parseInt(day);

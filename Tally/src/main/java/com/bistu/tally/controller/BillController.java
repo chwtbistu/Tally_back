@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bistu.tally.bean.ResultInfo;
 import com.bistu.tally.dao.entity.Bill;
+import com.bistu.tally.helper.DateFactory;
 import com.bistu.tally.service.BillService;
-import com.bistu.tally.util.DateFactory;
 
 import lombok.extern.slf4j.Slf4j;
 

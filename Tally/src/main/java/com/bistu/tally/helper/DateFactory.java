@@ -1,4 +1,4 @@
-package com.bistu.tally.util;
+package com.bistu.tally.helper;
 
 import java.text.DateFormat;
 import java.text.ParseException;

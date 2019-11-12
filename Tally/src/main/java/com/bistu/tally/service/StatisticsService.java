@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bistu.tally.dao.entity.Bill;
 import com.bistu.tally.dao.repository.BillRepository;
-import com.bistu.tally.util.DateFactory;
+import com.bistu.tally.helper.DateFactory;
 
 @Service
 public class StatisticsService {
@@ -77,7 +77,7 @@ public class StatisticsService {
 
 	public float sumCategoryByYear(Long userid, int category, int year) {
 		float sum = 0;
-		ArrayList<Bill> bills = new ArrayList<>();
+		ArrayList<Bill> bills = new ArrayList<Bill>();
 		bills = billRepository.findCategoryFromYear(userid, category, year);
 		for (int i = 0; i < bills.size(); i++) {
 			sum += bills.get(i).getAmount();
@@ -87,7 +87,7 @@ public class StatisticsService {
 
 	public float sumCategoryByMonth(Long userid, int category, int year, int month) {
 		float sum = 0;
-		ArrayList<Bill> bills = new ArrayList<>();
+		ArrayList<Bill> bills = new ArrayList<Bill>();
 		bills = billRepository.findCategoryFromMonth(userid, category, year, month);
 		for (int i = 0; i < bills.size(); i++) {
 			sum += bills.get(i).getAmount();
@@ -99,7 +99,7 @@ public class StatisticsService {
 
 	public float sumCategoryByDay(Long userid, int category, int year, int month, int day) {
 		float sum = 0;
-		ArrayList<Bill> bills = new ArrayList<>();
+		ArrayList<Bill> bills = new ArrayList<Bill>();
 		bills = billRepository.findCategoryFromDay(userid, category, year, month, day);
 		for (int i = 0; i < bills.size(); i++) {
 			sum += bills.get(i).getAmount();
@@ -108,7 +108,7 @@ public class StatisticsService {
 	}
 
 	public float[] findEachMonthFromUserIdAndYear(Long userid, int year, int category) {
-		ArrayList<Bill> bills = new ArrayList<>();
+		ArrayList<Bill> bills = new ArrayList<Bill>();
 		bills = this.billRepository.findCategoryFromYear(userid, category, year);
 		float[] eachMonth = new float[12];
 		for (int i = 0; i < eachMonth.length; i++) {
