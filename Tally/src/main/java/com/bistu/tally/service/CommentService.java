@@ -48,7 +48,7 @@ public class CommentService {
 		entity2 = this.socialRepository.save(entity2);
 		SocialBean bean2 = SocialBean.of(entity2);
 		bean2.setPraise(this.praiseRepository.existsByUserIdAndSocialId(bean.getUserId(), bean.getSocialId()));
-		bean2.setUsername(this.userRepository.findCase(bean.getUserId()));
+		bean2.setUserName(this.userRepository.findCase(bean.getUserId()));
 		if(bean2.getCommentsNum() > 0)
 			bean2.setComments(getBySocialId(bean.getSocialId()));
 		return bean2;
@@ -59,7 +59,7 @@ public class CommentService {
 		List<CommentBean> entities = new ArrayList<CommentBean>();
 		for(int i = 0; i < comments.size(); i++) {
 			CommentBean bean = CommentBean.of(comments.get(i));
-			bean.setUsername(this.userRepository.findCase(bean.getUserId()));
+			bean.setUserName(this.userRepository.findCase(bean.getUserId()));
 			entities.add(bean);
 		}
 		return entities;

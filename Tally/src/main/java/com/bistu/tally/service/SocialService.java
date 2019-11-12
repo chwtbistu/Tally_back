@@ -47,7 +47,7 @@ public class SocialService {
 		for(int i = 0; i < socials.size(); i++) {
 			SocialBean bean = SocialBean.of(socials.get(i));
 			bean.setPraise(this.praiseRepository.existsByUserIdAndSocialId(userId, bean.getSocialId()));
-			bean.setUsername(this.userRepository.findCase(bean.getUserId()));
+			bean.setUserName(this.userRepository.findCase(bean.getUserId()));
 			if(bean.getCommentsNum() > 0)
 				bean.setComments(getBySocialId(bean.getSocialId()));
 			beans.add(bean);
@@ -65,7 +65,7 @@ public class SocialService {
 		List<CommentBean> entities = new ArrayList<CommentBean>();
 		for(int i = 0; i < comments.size(); i++) {
 			CommentBean bean = CommentBean.of(comments.get(i));
-			bean.setUsername(this.userRepository.findCase(bean.getUserId()));
+			bean.setUserName(this.userRepository.findCase(bean.getUserId()));
 			entities.add(bean);
 		}
 		return entities;
@@ -82,7 +82,7 @@ public class SocialService {
 		for(int i = 0; i < socials.size(); i++) {
 			SocialBean bean = SocialBean.of(socials.get(i));
 			bean.setPraise(this.praiseRepository.existsByUserIdAndSocialId(userId, bean.getSocialId()));
-			bean.setUsername(this.userRepository.findCase(bean.getUserId()));
+			bean.setUserName(this.userRepository.findCase(bean.getUserId()));
 			if(bean.getCommentsNum() > 0)
 				bean.setComments(getBySocialId(bean.getSocialId()));
 			beans.add(bean);
@@ -103,6 +103,7 @@ public class SocialService {
 		entity = this.socialRepository.save(entity);
 		log.info("entity saved: {}", entity);
 		SocialBean bean2 = SocialBean.of(entity);
+		bean2.setUserName(this.userRepository.findCase(bean2.getUserId()));
 		return bean2;
 	}
 	/**

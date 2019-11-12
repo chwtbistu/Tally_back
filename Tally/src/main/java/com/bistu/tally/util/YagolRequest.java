@@ -9,8 +9,8 @@ import lombok.Data;
 @Data
 public class YagolRequest {
 
-	private ArrayList<String> categories = new ArrayList<>();
-	private ArrayList<SeriesBean> series = new ArrayList<>();
+	private ArrayList<String> categories = new ArrayList<String>();
+	private ArrayList<SeriesBean> series = new ArrayList<SeriesBean>();
 
 	public YagolRequest(){
 		categories.add(0, "1");
