@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bistu.tally.bean.ResultInfo;
 import com.bistu.tally.dao.entity.Bill;
 import com.bistu.tally.service.StatisticsService;
+import com.bistu.tally.util.YagolRequest;
 import com.sun.net.httpserver.HttpServer;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 public class StatisticsController {
 	@Autowired
 	private StatisticsService statisticsService;
+
+	private YagolRequest yagolRequest = new YagolRequest();
 
 	/**
 	 * 获得指定用户，指定的收支类型的，账单数据，返回该用户所有该收支类型，否则返回指定月份/年份/日的账单
@@ -83,5 +86,7 @@ public class StatisticsController {
 				statisticsService.findByUserIdAndClassify(userid, classify, Integer.parseInt(month), category));
 		return resultInfo;
 	}
+	
+	
 
 }
