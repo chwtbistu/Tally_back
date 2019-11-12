@@ -130,8 +130,7 @@ public class BillController {
 	public ResultInfo getBillFromUserId(@PathVariable("userid") Long userid) {
 		log.info("get requsting...");
 		ResultInfo resultInfo = ResultInfo.success();
-		//resultInfo.setData(billService.findByUserId(userid));
-		resultInfo.setData(yagolRequest);
+		resultInfo.setData(billService.findByUserId(userid));
 		return resultInfo;
 	}
 
