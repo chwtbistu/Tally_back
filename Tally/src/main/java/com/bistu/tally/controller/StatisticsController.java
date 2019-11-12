@@ -35,7 +35,7 @@ public class StatisticsController {
 	 * @param year
 	 * @return
 	 */
-	@GetMapping("/bill/caategory")
+	@GetMapping("/bill/category")
 	public ResultInfo getAllBillFromUserIdAndCategoryAndMonth(@RequestParam("userid") Long userid,
 			@RequestParam("category") int category, @RequestParam("month") String month,
 			@RequestParam("day") String day, @RequestParam("year") String year) {
