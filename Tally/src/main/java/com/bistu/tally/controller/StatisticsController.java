@@ -26,7 +26,7 @@ public class StatisticsController {
 
 	/**
 	 * 获得指定用户，指定的收支类型的，账单数据，返回该用户所有该收支类型，否则返回指定月份/年份/日的账单
-	 * http://127.0.0.1:8080/bill/statistics/?userid=1&category=1&month=11&day=0&year=0
+	 * http://127.0.0.1:8080/bill/category/?userid=1&category=1&month=11&day=0&year=0
 	 * 
 	 * @param userid
 	 * @param category
