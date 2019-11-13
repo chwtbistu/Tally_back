@@ -10,7 +10,7 @@ public class YagolRequest_2 extends Request {
 
 	public void setCategoriesToMonth() {
 		this.categories=new ArrayList<String>();
-		for (int i = 0; i < 12; i++) {
+		for (int i = 1; i <= 12; i++) {
 			this.categories.add(i + "");
 		}
 	}
