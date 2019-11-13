@@ -110,7 +110,7 @@ public class StatisticsService {
 	public float[] findEachMonthFromUserIdAndYear(Long userid, int year, int category) {
 		ArrayList<Bill> bills = new ArrayList<Bill>();
 		bills = this.billRepository.findCategoryFromYear(userid, category, year);
-		float[] eachMonth = new float[12];
+		float[] eachMonth = new float[13];
 		for (int i = 0; i < eachMonth.length; i++) {
 			eachMonth[i] = 0;
 		}
