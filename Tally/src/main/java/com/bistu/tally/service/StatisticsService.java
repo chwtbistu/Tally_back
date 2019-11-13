@@ -126,22 +126,22 @@ public class StatisticsService {
 		float[] eachClassiyf = new float[6];
 		for (int i = 0; i < bills.size(); i++) {
 			switch (bills.get(i).getClassify()) {
-			case "学习":
+			case "餐饮":
 				eachClassiyf[0] += bills.get(i).getAmount();
 				break;
-			case "运动":
+			case "购物":
 				eachClassiyf[1] += bills.get(i).getAmount();
 				break;
 			case "交通":
 				eachClassiyf[2] += bills.get(i).getAmount();
 				break;
-			case "衣服":
+			case "娱乐":
 				eachClassiyf[3] += bills.get(i).getAmount();
 				break;
-			case "工具":
+			case "书籍":
 				eachClassiyf[4] += bills.get(i).getAmount();
 				break;
-			case "食物":
+			case "其他":
 				eachClassiyf[5] += bills.get(i).getAmount();
 				break;
 			default:
@@ -156,22 +156,22 @@ public class StatisticsService {
 		float[] eachClassiyf = new float[6];
 		for (int i = 0; i < bills.size(); i++) {
 			switch (bills.get(i).getClassify()) {
-			case "学习":
+			case "餐饮":
 				eachClassiyf[0] += bills.get(i).getAmount();
 				break;
-			case "运动":
+			case "购物":
 				eachClassiyf[1] += bills.get(i).getAmount();
 				break;
 			case "交通":
 				eachClassiyf[2] += bills.get(i).getAmount();
 				break;
-			case "衣服":
+			case "娱乐":
 				eachClassiyf[3] += bills.get(i).getAmount();
 				break;
-			case "工具":
+			case "书籍":
 				eachClassiyf[4] += bills.get(i).getAmount();
 				break;
-			case "食物":
+			case "其他":
 				eachClassiyf[5] += bills.get(i).getAmount();
 				break;
 			default:
@@ -186,22 +186,22 @@ public class StatisticsService {
 		float[] eachClassiyf = new float[6];
 		for (int i = 0; i < bills.size(); i++) {
 			switch (bills.get(i).getClassify()) {
-			case "学习":
+			case "餐饮":
 				eachClassiyf[0] += bills.get(i).getAmount();
 				break;
-			case "运动":
+			case "购物":
 				eachClassiyf[1] += bills.get(i).getAmount();
 				break;
 			case "交通":
 				eachClassiyf[2] += bills.get(i).getAmount();
 				break;
-			case "衣服":
+			case "娱乐":
 				eachClassiyf[3] += bills.get(i).getAmount();
 				break;
-			case "工具":
+			case "书籍":
 				eachClassiyf[4] += bills.get(i).getAmount();
 				break;
-			case "食物":
+			case "其他":
 				eachClassiyf[5] += bills.get(i).getAmount();
 				break;
 			default:

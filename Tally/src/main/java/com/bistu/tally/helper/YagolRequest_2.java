@@ -17,11 +17,11 @@ public class YagolRequest_2 extends Request {
 
 	public void setCategoriesToClassify() {
 		this.categories=new ArrayList<String>();
-		this.categories.add("学习");
-		this.categories.add("运动");
+		this.categories.add("餐饮");
+		this.categories.add("购物");
 		this.categories.add("交通");
-		this.categories.add("衣服");
-		this.categories.add("工具");
-		this.categories.add("食物");
+		this.categories.add("娱乐");
+		this.categories.add("书籍");
+		this.categories.add("其他");
 	}
 }
