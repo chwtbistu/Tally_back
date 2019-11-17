@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bistu.tally.bean.ResultInfo;
@@ -17,6 +18,7 @@ import com.bistu.tally.helper.DateFactory;
 import com.bistu.tally.service.BillService;
 
 import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.asm.Advice.This;
 
 @Slf4j
 @RestController
@@ -124,10 +126,20 @@ public class BillController {
 	 * @return
 	 */
 	@GetMapping({ "/bill/get/user/{userid}&{category}" })
-	public ResultInfo getBillFromUserId(@PathVariable("userid") Long userid,@PathVariable("category") int category) {
+	public ResultInfo getBillFromUserId(@PathVariable("userid") Long userid, @PathVariable("category") int category) {
 		log.info("get requsting...");
 		ResultInfo resultInfo = ResultInfo.success();
-		resultInfo.setData(billService.findByUserIdAndCategoryByTimeDesc(userid,category));
+		resultInfo.setData(billService.findByUserIdAndCategoryByTimeDesc(userid, category));
+		return resultInfo;
+	}
+
+	@GetMapping({ "/bill/get/user/date/" })
+	public ResultInfo getBillFromUserIdByDay(@RequestParam("userid") Long userid,
+			@RequestParam("category") int category, @RequestParam("year") int year, @RequestParam("month") int month,
+			@RequestParam("day") int day) {
+		log.info("get requesting....");
+		ResultInfo resultInfo = ResultInfo.success();
+		resultInfo.setData(this.billService.findBillFromDayByTime(userid, category, year, month, day));
 		return resultInfo;
 	}
 
