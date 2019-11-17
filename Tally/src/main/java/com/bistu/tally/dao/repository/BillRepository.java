@@ -41,6 +41,12 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 	@Query("select b from Bill b where b.id=?1")
 	ArrayList<Bill> findByBillId(Long id);
 
+	@Query(nativeQuery = true, value = "select * FROM t_bill where user_id=?1 and bill_category=?2 Order by time desc")
+	ArrayList<Bill> findByUserIdAndCategoryByTimeDesc(Long userid, int category);
+
+	@Query(nativeQuery = true, value = "select * FROM t_bill where user_id=?1 Order by time desc")
+	ArrayList<Bill> findByUserIdByTimeDesc(Long userid);
+
 	ArrayList<Bill> findByUserIdAndCategory(Long userid, int category);
 
 	@Query(nativeQuery = true, value = "select * from t_bill where user_id=?1 and bill_category=?2 and month(time)=?3")

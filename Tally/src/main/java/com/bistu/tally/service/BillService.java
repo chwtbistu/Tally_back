@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bistu.tally.dao.entity.Bill;
 import com.bistu.tally.dao.repository.BillRepository;
-
 @Service
 public class BillService {
 	@Autowired
@@ -76,6 +75,14 @@ public class BillService {
 
 	public ArrayList<Bill> findByUserId(Long userId) {
 		return billRepository.findByUserId(userId);
+	}
+
+	public ArrayList<Bill> findByUserIdByTimeDesc(Long userid) {
+		return billRepository.findByUserIdByTimeDesc(userid);
+	}
+	
+	public ArrayList<Bill> findByUserIdAndCategoryByTimeDesc(Long userid,int category) {
+		return billRepository.findByUserIdAndCategoryByTimeDesc(userid, category);
 	}
 
 	public Bill findByBillId(Long id) {
